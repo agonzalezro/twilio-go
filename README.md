@@ -1,8 +1,9 @@
 Twilio NON-OFFICIAL Golang wrapper
 ==================================
 
-**This project is in a really alpha state for now. I will try to keep it
-up-to-date but I've just started it.**
+**This project is in a really alpha state for now. Feel free of provide pull requests or add [new issues](https://github.com/agonzalezro/twilio-go/issues).**
+
+[![GoDoc](https://godoc.org/github.com/agonzalezro/twilio-go?status.png)](https://godoc.org/github.com/agonzalezro/twilio-go)
 
 How to use?
 -----------

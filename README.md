@@ -39,3 +39,32 @@ you can just copy paste this commands:
     $ export GOPATH=/Users/alex/go
     $ mkdir -p $GOPATH/src/github.com/agonzalezro
     $ ln -s $HOME/twilio-go $GOPATH/src/github.com/agonzalezro
+
+Examples
+--------
+
+I've included few examples on the `examples/` folder.
+
+For example, if you want to send an sms, you can use this command (filling the
+needed information, of course):
+
+	go run examples/sms/sms.go \
+		-account XXXXYOURACCOUNTHEREXXXX \
+		-token YYYYOURTOKENHEREYYYY \
+		-from +15005550006 \
+		-to +447449601002 \
+		-body "Hi world\!"
+
+If you want to make a call, you will need an adittional step. You should check
+the documentation of [TwiML](https://www.twilio.com/docs/api/twiml) and provide
+the XML in an endpoint that is accessible from the world.
+
+After having that, you can use this command (note that I am using environment
+variables now):
+
+	TWILIO_ACCOUNT=AC0f9f0c5025b665ed8d68e649e442b0ff \
+	TWILIO_TOKEN=77a081faa8bebb1487827b527f87a0e5 \
+	TWILIO_NUMBER=+15005550006 \
+	go run examples/voice/voice.go \
+		-to 447449601002 \
+		-url http://YOURENDPOINTXML/MUSTALLOWPOST

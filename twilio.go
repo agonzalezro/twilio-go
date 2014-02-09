@@ -12,7 +12,9 @@
 package twilio
 
 import (
+	"encoding/json"
 	"fmt"
+	"io"
 	"io/ioutil"
 	"log"
 	"net/http"
@@ -27,6 +29,28 @@ type TwilioRestClient struct {
 	token    string
 	Calls    *Calls
 	Messages *Messages
+}
+
+// ErrorResponse is the global struct that we are going to use to unmarshall
+// the errors returned by the API
+type ErrorResponse struct {
+	Code     int
+	Message  string
+	MoreInfo string `json:"more_info"`
+	Status   int
+}
+
+// NewErrorResponse will create an object type ErrorResponse giving the body
+// passed as parameter
+func NewErrorResponse(body io.Reader) *ErrorResponse {
+	errorResponse := ErrorResponse{}
+	bodyContent, _ := ioutil.ReadAll(body)
+	log.Printf("%s", bodyContent)
+	if err := json.Unmarshal(bodyContent, &errorResponse); err != nil {
+		log.Panic(err)
+	}
+	log.Printf("%+v", errorResponse)
+	return &errorResponse
 }
 
 // NewTwilioRestClient is going to create a new Twilio client providing the
@@ -56,9 +80,6 @@ func (c TwilioRestClient) post(methodURL string, values url.Values) (*http.Respo
 	if err != nil {
 		return nil, err
 	}
-
-	responseBodyContent, _ := ioutil.ReadAll(resp.Body)
-	log.Printf("POST response body: %s", responseBodyContent)
 
 	return resp, nil
 }

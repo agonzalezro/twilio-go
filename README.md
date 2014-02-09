@@ -21,6 +21,12 @@ Now, if you want to send an SMS just do:
     client = twilio.NewTwilioRestClient("Your account here", "Your token here")
     client.Messsages.Create("+44fromnumber", "+31tonumber", "Hi world!")
 
+Supported methods
+-----------------
+
+- You can send SMS.
+- You can do calls.
+
 How to develop easily?
 ----------------------
 

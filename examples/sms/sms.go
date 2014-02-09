@@ -1,3 +1,7 @@
+// This example is showing how to create a command to send SMS using the Twilio
+// API in a really easy way.
+//
+// Check the -h of the command to see the mandatory options.
 package main
 
 import (

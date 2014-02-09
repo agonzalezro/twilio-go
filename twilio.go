@@ -25,14 +25,16 @@ import (
 type TwilioRestClient struct {
 	account  string
 	token    string
+	Calls    *Calls
 	Messages *Messages
 }
 
 // NewTwilioRestClient is going to create a new Twilio client providing the
 // account and token details
 func NewTwilioRestClient(account string, token string) *TwilioRestClient {
-	client := &TwilioRestClient{account, token, &Messages{}}
+	client := &TwilioRestClient{account, token, &Calls{}, &Messages{}}
 	client.Messages.client = client // Keep track of the parent
+	client.Calls.client = client
 	return client
 }
 

@@ -71,3 +71,10 @@ variables now):
 	go run examples/voice/voice.go \
 		-to 447449601002 \
 		-url http://YOURENDPOINTXML/MUSTALLOWPOST
+
+TODO
+----
+
+- Logical: finish all the API REST methods.
+- Add more tests!
+- Remove duplication, there is a lot: in tests & in modules code :(
